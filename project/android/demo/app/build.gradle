@@ -1,19 +1,24 @@
-apply plugin: 'com.android.application'
-
+plugins {
+    id 'com.android.application' version '8.5.0'
+}
 android {
-    compileSdkVersion 28
+    namespace 'com.taobao.android.mnndemo'
+    ndkVersion rootProject.ext.ndkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdk rootProject.ext.compileSdkVersion
+
     defaultConfig {
         applicationId "com.taobao.android.mnndemo"
-        minSdkVersion 14
-        targetSdkVersion 28
+        minSdkVersion 24
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         externalNativeBuild {
             cmake {
-                arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_PLATFORM=android-21", "-DANDROID_STL=c++_shared", "-DMNN_JNI=TRUE", "-DMNN_OPENCL=true", "-DMNN_OPENGL=true","-DMNN_VULKAN=true"
-                abiFilters 'armeabi-v7a', 'arm64-v8a'
+                arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_PLATFORM=android-25", "-DANDROID_STL=c++_shared", "-DMNN_JNI=TRUE", "-DMNN_OPENCL=true", "-DMNN_OPENGL=true","-DMNN_VULKAN=true"
+                abiFilters 'arm64-v8a'
             }
         }
     }

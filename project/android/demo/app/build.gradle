@@ -18,7 +18,7 @@ android {
         externalNativeBuild {
             cmake {
                 // 指定生成的so文件
-                arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_PLATFORM=android-25", "-DANDROID_STL=c++_shared", "-DMNN_JNI=TRUE", "-DMNN_OPENCL=true", "-DMNN_OPENGL=true","-DMNN_VULKAN=true"
+                arguments "-DANDROID_ARM_NEON=false", "-DMNN_DEBUG=false", "-DANDROID_PLATFORM=android-21", "-DANDROID_STL=c++_shared", "-DMNN_JNI=false", "-DMNN_OPENCL=false", "-DMNN_OPENGL=false","-DMNN_VULKAN=false"
                 abiFilters 'arm64-v8a'
             }
         }

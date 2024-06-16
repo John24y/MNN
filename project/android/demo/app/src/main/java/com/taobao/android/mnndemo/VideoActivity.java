@@ -44,7 +44,7 @@ public class VideoActivity extends AppCompatActivity implements AdapterView.OnIt
     private final String TAG = "VideoActivity";
     private final int MAX_CLZ_SIZE = 1000;
 
-    private final String MobileModelFileName = "MobileNet/v2/mobilenet_v2.caffe.mnn";
+    private final String MobileModelFileName = "MobileNet/v2/mobilenet_v2_1.0_224.tflite.mnn";
     private final String MobileWordsFileName = "MobileNet/synset_words.txt";
 
     private final String SqueezeModelFileName = "SqueezeNet/v1.1/squeezenet_v1.1.caffe.mnn";

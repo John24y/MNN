@@ -17,8 +17,13 @@ android {
 
         externalNativeBuild {
             cmake {
-                // 指定生成的so文件
-                arguments "-DANDROID_ARM_NEON=false", "-DMNN_DEBUG=false", "-DANDROID_PLATFORM=android-21", "-DANDROID_STL=c++_shared", "-DMNN_JNI=false", "-DMNN_OPENCL=false", "-DMNN_OPENGL=false","-DMNN_VULKAN=false"
+                // 生成so文件
+                arguments "-DANDROID_ARM_NEON=true", "-DMNN_DEBUG=false", "-DANDROID_PLATFORM=android-21", 
+                "-DANDROID_STL=c++_shared", "-DMNN_JNI=true", 
+                "-DMNN_OPENCL=true", "-DMNN_OPENGL=true","-DMNN_VULKAN=true",
+                 // 关键参数，编译体积 7M->1M
+                "-DCMAKE_BUILD_TYPE=Release", 
+                "-DCMAKE_CXX_FLAGS_RELEASE=-O3"
                 abiFilters 'arm64-v8a'
             }
         }

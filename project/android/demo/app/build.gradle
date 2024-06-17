@@ -45,9 +45,9 @@ android {
     }
     sourceSets {
         main {
-            main {
-                jniLibs.srcDirs = ['libs']
-            }
+//            main {
+//                jniLibs.srcDirs = ['libs']
+//            }
             assets {
                 // 执行下载脚本后，文件在/resource/model
                 srcDirs = ["../../../../demo/model", "../../../../resource/model"]

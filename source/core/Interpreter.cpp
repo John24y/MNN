@@ -91,6 +91,7 @@ Interpreter* Interpreter::createFromFile(const char* file) {
     if (nullptr == net) {
         return nullptr;
     }
+    MNN_PRINT("loadModelFile success\n");
     // Set Default externalFile
     net->externalFile = std::string(file) + ".weight";
 
@@ -120,7 +121,7 @@ Interpreter* Interpreter::createFromBufferInternal(Content* net, bool enforceAut
 #ifndef MNN_BUILD_MINI
     flatbuffers::Verifier verify((const uint8_t*)(net->buffer.get()), net->buffer.size());
     if (false == VerifyNetBuffer(verify)) {
-        MNN_PRINT("Invalidate buffer to create interpreter\n");
+        MNN_PRINT("Interpreter.cpp Invalidate buffer to create interpreter\n");
         delete net;
         return nullptr;
     }

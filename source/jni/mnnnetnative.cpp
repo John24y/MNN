@@ -240,6 +240,29 @@ extern "C" JNIEXPORT void JNICALL Java_com_taobao_android_mnn_MNNNetNative_nativ
     env->ReleaseFloatArrayElements(data_, data, 0);
 }
 
+extern "C" JNIEXPORT void JNICALL Java_com_taobao_android_mnn_MNNNetNative_nativeSetDeviceInputFloatData(
+    JNIEnv *env, jclass type, jlong netPtr, jlong tensorPtr, jfloatArray data_) {
+    auto tensor = (MNN::Tensor *)tensorPtr;
+
+    jfloat *data = env->GetFloatArrayElements(data_, NULL);
+    auto dataSize = env->GetArrayLength(data_);
+
+    auto hostTensor = MNN::Tensor::create<float>(tensor->shape(), data, MNN::Tensor::CAFFE);
+    MNN_PRINT("nativeSetDeviceInputFloatData created tmp hostTensor!");
+
+    if (!tensor->copyFromHostTensor(hostTensor)) {
+        MNN_PRINT("nativeSetDeviceInputFloatData copyFromHostTensor failed!");
+    } else {
+        MNN_PRINT("nativeSetDeviceInputFloatData copyFromHostTensor success!");
+    }
+
+    MNN::Tensor::destroy(hostTensor);
+    MNN_PRINT("nativeSetDeviceInputFloatData destroied tmp hostTensor!");
+
+    env->ReleaseFloatArrayElements(data_, data, 0);
+    MNN_PRINT("nativeSetDeviceInputFloatData success!");
+}
+
 extern "C" JNIEXPORT jintArray JNICALL
 Java_com_taobao_android_mnn_MNNNetNative_nativeTensorGetDimensions(JNIEnv *env, jclass type, jlong tensorPtr) {
     auto tensor     = (MNN::Tensor *)tensorPtr;
